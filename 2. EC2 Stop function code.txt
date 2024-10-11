@@ -1,0 +1,15 @@
+import boto3
+import logging
+
+region = 'us-east-1'
+instances = ['i-01e53a0f7f8f771ec', 'i-07e08d26a8fc9af65']
+ec2 = boto3.client('ec2', region_name=region)
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
+
+def lambda_handler(event, context):
+    try:
+        ec2.stop_instances(InstanceIds=instances)
+        logger.info(f'Stopped instances: {instances}')
+    except botocore.exceptions.ClientError as e:
+        logger.error(f'Error stopping instances: {e}')
