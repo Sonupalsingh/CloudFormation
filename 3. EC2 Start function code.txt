@@ -1,8 +1,9 @@
 import boto3
 import logging
+import botocore  # Import botocore for exception handling
 
 region = 'us-east-1'
-instances = ['i-01e53a0f7f8f771ec', 'i-07e08d26a8fc9af65']
+instances = ['correct-instance-id1', 'correct-instance-id2']  # Replace with correct instance IDs
 ec2 = boto3.client('ec2', region_name=region)
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
